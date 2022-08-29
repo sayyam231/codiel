@@ -46,6 +46,8 @@ module.exports.create = function (req, res) {
 }
 // sign in and create the session for the user
 module.exports.createSession = (req, res)=>{
-    // todo
+    return res.render('home', {
+        title: "session"
+    });
 
 }
