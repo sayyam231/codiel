@@ -8,6 +8,7 @@ const db = require('./config/mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
+const MongoStore = require('connect-mongo');
 
 app.use(express.urlencoded());
 app.use(cookieParser());
@@ -32,6 +33,15 @@ app.use(session({
     name: 'codiel',
     // TODO change the secret before deployemnet
     secret: "coding is fun",
+    store: MongoStore.create({
+        
+        mongoUrl: "mongodb://localhost/codiel_development",
+        autoRemove: "disabled"
+        
+    },
+        function (err) { 
+            console.log(err || 'connect-mongoDb setup ok');
+     }),
     saveUninitialized: false,
     resave: false,
     cookie: {
@@ -41,6 +51,8 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+// transfer the signed in user data to locals
+app.use(passport.setAuthenticatedUser);
 
 // use express Router
 app.use('/', require('./routes/index'));
