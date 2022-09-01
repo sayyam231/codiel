@@ -7,5 +7,13 @@
                 <textarea name="content" cols="30" rows="3" placeholder="Type Here... "></textarea>
                 <input type="submit" value="Post">
         </form>
+
 </section>
+
+<% for( post of posts) { %>
+        <div>
+                
+                <p> <h5><%= post.user.name %> </h5><%= post.content %>  </p>
+        </div>
+<% } %>
   
