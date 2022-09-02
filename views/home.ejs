@@ -13,10 +13,29 @@
 
 </section>
 
-<% for( post of posts) { %>
-        <div>
-                
-                <p> <h5><%= post.user.name %> </h5><%= post.content %>  </p>
-        </div>
-<% } %>
+<div>
+        <ul>
+                <% for( post of posts) { %>
+                        <li>
+
+                                <p> <%= post.content %> <br>
+                                        <small>
+                                                <%= post.user.name %>
+                                        </small>
+                                </p>
+                                <div>
+                                        <% if (locals.user) { %>
+                                                <form action="/comments/create" method="post">
+                                                        <input type="text" name="content" placeholder="Add comment" id="">
+                                                        <input type="hidden" name="post" value="<%= post._id %>">
+                                                        <input type="submit" value="Post Comment" id="">
+                                                </form>
+                                        <% } %>
+                                </div>
+                        </li>
+
+
+                <% } %>
+        </ul>
+</div>
   
