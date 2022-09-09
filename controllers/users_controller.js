@@ -3,9 +3,22 @@ module.exports.users = function (req, res) {
     res.end("users page")
 }
 module.exports.profile = function (req, res) {
-    return res.render("profile", {
-        title: "profile"
-    });
+    User.findById(req.params.id, (err, user) => {
+        return res.render("profile", {
+            title: "profile",
+            profile:user
+        });
+    })
+   
+}
+module.exports.update = function (req, res) { 
+    if (req.user.id == req.params.id) {
+        User.findByIdAndUpdate(req.params.id, req.body, function (err, user) {
+            return res.redirect('back');
+        });
+    } else {
+        return res.status(401).send('Unauthorized');
+    }
 }
 // render the sign in page
 module.exports.signIn = (req, res) => {

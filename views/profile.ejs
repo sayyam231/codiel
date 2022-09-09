@@ -1,2 +1,12 @@
 <h1>User profile page</h1>
-<h3>Hello!! <%= user.name %> </h3>
+<% if (locals.user.id == profile.id) { %>
+    <form action="/users/update/<%=profile.id%>" method="post">
+        <input type="text" name="name" placeholder="Your name" value="<%=profile.name%>" required>
+        <input type="email" name="email" placeholder="Your email" value="<%=profile.email%>" required>
+        <input type="submit" name="" id="">
+    </form>
+<% }else{ %>
+    
+    <h3>This is <%= profile.name %> profile page</h3>
+    <h3>This is <%= profile.email %> profile page</h3>
+<% } %> 
