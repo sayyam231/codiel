@@ -61,7 +61,7 @@ module.exports.create = function (req, res) {
 }
 // sign in and create the session for the user
 module.exports.createSession = (req, res)=>{
-    return res.redirect('/users/profile');
+    return res.redirect('/');
 
 }
 // sign out
