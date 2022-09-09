@@ -35,7 +35,7 @@ module.exports.signUp = (req, res) => {
 
 // get the sign up data 
 module.exports.create = function (req, res) {
-    const data = req.body
+    const data = req.body;
     if (data.confirm_password != data.password) {
         
         return res.redirect('back');
@@ -59,11 +59,12 @@ module.exports.create = function (req, res) {
         }
     })
 }
+
 // sign in and create the session for the user
 module.exports.createSession = (req, res)=>{
     return res.redirect('/');
-
 }
+
 // sign out
 module.exports.destroySession = (req, res) => {
     req.logout(function (err) {
